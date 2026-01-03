@@ -1,5 +1,6 @@
 package com.shop.Workshop.controller;
 
+import com.shop.Workshop.dto.UserDTO;
 import com.shop.Workshop.entity.User;
 import com.shop.Workshop.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,10 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User> > findAll(){
-        return ResponseEntity.ok().body(userService.findAll());
+    public ResponseEntity<List<UserDTO> > findAll(){
+        List<User> list = userService.findAll();
+        List<UserDTO> listDTO = list.stream().map(x -> new UserDTO(x)).toList();
+
+        return ResponseEntity.ok().body(listDTO);
     }
 }

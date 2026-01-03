@@ -20,11 +20,11 @@ public class instantiation implements CommandLineRunner {
     public void run(String... args) throws Exception {
         userRepository.deleteAll();
 
-        User u1 = new User("Guilherme Tempesta","Guilherme@gmail.com",null);
-        User u2 = new User("Mara Cum", "Mara@gmail.com", null);
-        User u3 = new User("Jamimo lhei", "Jaimo@gmail.com", null);
-        User u4 = new User ("Tasco mido","Tasco@gmail.com", null);
-        User u5 = new User("Sauldo pinto","Sauldo@gmail.com", null);
+        User u1 = new User("Guilherme Tempesta","Guilherme@gmail.com","26/01/2004", null);
+        User u2 = new User("Mara Cum", "Mara@gmail.com", "04/07/2010",null);
+        User u3 = new User("Jamimo lhei", "Jaimo@gmail.com", "13/12/2001",null);
+        User u4 = new User ("Tasco mido","Tasco@gmail.com", "10/10/1990",null);
+        User u5 = new User("Sauldo pinto","Sauldo@gmail.com", "29/07/1997" ,null);
 
         userRepository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 
