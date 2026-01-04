@@ -1,6 +1,7 @@
 package com.shop.Workshop.services;
 
 import com.shop.Workshop.entity.User;
+import com.shop.Workshop.services.exceptions.ObjectNotFoundException;
 import com.shop.Workshop.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,10 @@ public class UserService {
 
     public List<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public User findById(String id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Object not found!!"));
     }
 }

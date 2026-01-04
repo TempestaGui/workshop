@@ -3,6 +3,7 @@ package com.shop.Workshop.dto;
 import com.shop.Workshop.entity.User;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 public class UserDTO implements Serializable {
 
