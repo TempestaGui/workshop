@@ -1,5 +1,6 @@
 package com.shop.Workshop.services;
 
+import com.shop.Workshop.dto.UserDTO;
 import com.shop.Workshop.entity.User;
 import com.shop.Workshop.services.exceptions.ObjectNotFoundException;
 import com.shop.Workshop.repository.UserRepository;
@@ -23,5 +24,13 @@ public class UserService {
     public User findById(String id){
         return userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Object not found!!"));
+    }
+
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getName(), objDTO.getEmail(), null ,objDTO.getId());
     }
 }
