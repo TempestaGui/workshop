@@ -1,5 +1,6 @@
 package com.shop.Workshop.config;
 
+import com.shop.Workshop.dto.AuthorDTO;
 import com.shop.Workshop.entity.Post;
 import com.shop.Workshop.entity.User;
 import com.shop.Workshop.repository.PostRepository;
@@ -39,8 +40,8 @@ public class instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 
-        Post p1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para sao paulo. abraços!", u1);
-        Post p2 = new Post(null, sdf.parse("23/03/2018"), "Bom Dia", "Acordei feliz hoje!", u1);
+        Post p1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para sao paulo. abraços!", new AuthorDTO(u1));
+        Post p2 = new Post(null, sdf.parse("23/03/2018"), "Bom Dia", "Acordei feliz hoje!", new AuthorDTO(u1));
 
         postRepository.saveAll(Arrays.asList(p1, p2));
     }
