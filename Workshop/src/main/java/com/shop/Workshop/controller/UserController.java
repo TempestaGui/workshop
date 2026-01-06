@@ -1,6 +1,7 @@
 package com.shop.Workshop.controller;
 
 import com.shop.Workshop.dto.UserDTO;
+import com.shop.Workshop.entity.Post;
 import com.shop.Workshop.entity.User;
 import com.shop.Workshop.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -59,5 +60,11 @@ public class UserController {
         obj.setId(id);
         userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findUserPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
