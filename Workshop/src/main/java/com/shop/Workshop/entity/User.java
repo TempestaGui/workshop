@@ -1,9 +1,12 @@
 package com.shop.Workshop.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -15,6 +18,9 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String birthDate;
+
+    @DBRef(lazy = true)
+    private List<Post> posts = new ArrayList<>();
 
     public User(){}
 
@@ -34,6 +40,8 @@ public class User implements Serializable {
 
     public String getBirthDate(){return birthDate;}
 
+    public List<Post> getPosts() {return posts;}
+
     public void setId(String id){this.id = id;}
 
     public void setName(String name){this.name = name;}
@@ -41,6 +49,8 @@ public class User implements Serializable {
     public void setEmail(String email){this.email = email;}
 
     public void setBirthDate(String birthDate){this.birthDate = birthDate;}
+
+    public void setPosts(List<Post> posts) {this.posts = posts;}
 
     @Override
     public boolean equals(Object o) {
