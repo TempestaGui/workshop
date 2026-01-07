@@ -1,6 +1,7 @@
 package com.shop.Workshop.config;
 
 import com.shop.Workshop.dto.AuthorDTO;
+import com.shop.Workshop.dto.CommentDTO;
 import com.shop.Workshop.entity.Post;
 import com.shop.Workshop.entity.User;
 import com.shop.Workshop.repository.PostRepository;
@@ -40,8 +41,15 @@ public class instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 
+        CommentDTO c1 = new CommentDTO("Boa viage mano!", sdf.parse("21/03/2018"), new AuthorDTO(u2));
+        CommentDTO c2 = new CommentDTO("Aproveite", sdf.parse("22/03/2018"), new AuthorDTO(u4));
+        CommentDTO c3 = new CommentDTO("Tenha um otimo dia!", sdf.parse("23/03/2018"), new AuthorDTO(u5));
+
         Post p1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para sao paulo. abraços!", new AuthorDTO(u1));
         Post p2 = new Post(null, sdf.parse("23/03/2018"), "Bom Dia", "Acordei feliz hoje!", new AuthorDTO(u1));
+
+        p1.getComments().addAll(Arrays.asList(c1,c2));
+        p2.getComments().add(c3);
 
         postRepository.saveAll(Arrays.asList(p1, p2));
 
