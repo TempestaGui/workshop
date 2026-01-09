@@ -5,6 +5,7 @@ import com.shop.Workshop.repository.PostRepository;
 import com.shop.Workshop.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,5 +26,10 @@ public class PostService {
 
     public List<Post> findByTitle(String text){
         return postRepository.findByTitle(text);
+    }
+
+    public List<Post> fullSearch(String text, Date minDate, Date maxDate){
+        maxDate = new Date(maxDate.getTime() + 86400000);
+        return postRepository.fullSearch(text, minDate, maxDate);
     }
 }
