@@ -3,16 +3,14 @@ package com.shop.Workshop.controller;
 import com.shop.Workshop.dto.UserDTO;
 import com.shop.Workshop.entity.Post;
 import com.shop.Workshop.entity.User;
+import com.shop.Workshop.repository.utils.URL;
 import com.shop.Workshop.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -66,5 +64,14 @@ public class UserController {
     public ResponseEntity<List<Post>> findUserPosts(@PathVariable String id){
         User obj = userService.findById(id);
         return ResponseEntity.ok().body(obj.getPosts());
+    }
+
+    @GetMapping("/birthdate")
+    public ResponseEntity<List<UserDTO>> findByBirthdate(@RequestParam(value = "date") String date){
+        Date birthdate = URL.convertDate(date, new Date());
+        List<User> list = userService.findByBirthdate(birthdate);
+        List<UserDTO> toDTO = list.stream().map(x -> new UserDTO(x)).toList();
+
+        return ResponseEntity.ok().body(toDTO);
     }
 }

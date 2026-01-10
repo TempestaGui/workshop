@@ -52,4 +52,8 @@ public class UserService {
         newObj.setEmail(obj.getEmail());
         newObj.setBirthDate(obj.getBirthDate());
     }
+
+    public List<User> findByBirthdate(Date date){
+        return userRepository.findByBirthDate(date);
+    }
 }

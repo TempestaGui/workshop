@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
+    public List<User> findByBirthDate(Date date);
+
 }

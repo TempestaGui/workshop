@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,14 +18,14 @@ public class User implements Serializable {
 
     private String name;
     private String email;
-    private String birthDate;
+    private Date birthDate;
 
     @DBRef(lazy = true)
     private List<Post> posts = new ArrayList<>();
 
     public User(){}
 
-    public User(String name, String email, String birthDate ,String id){
+    public User(String name, String email, Date birthDate ,String id){
         super();
         this.email = email;
         this.name = name;
@@ -38,7 +39,7 @@ public class User implements Serializable {
 
     public String getEmail(){return email;}
 
-    public String getBirthDate(){return birthDate;}
+    public Date getBirthDate(){return birthDate;}
 
     public List<Post> getPosts() {return posts;}
 
@@ -48,7 +49,7 @@ public class User implements Serializable {
 
     public void setEmail(String email){this.email = email;}
 
-    public void setBirthDate(String birthDate){this.birthDate = birthDate;}
+    public void setBirthDate(Date birthDate){this.birthDate = birthDate;}
 
     public void setPosts(List<Post> posts) {this.posts = posts;}
 
