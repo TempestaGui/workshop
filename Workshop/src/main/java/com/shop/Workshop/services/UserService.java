@@ -56,4 +56,8 @@ public class UserService {
     public List<User> findByBirthdate(Date date){
         return userRepository.findByBirthDate(date);
     }
+
+    public List<User> findByName(String name){
+        return userRepository.findByName(name);
+    }
 }

@@ -2,6 +2,7 @@ package com.shop.Workshop.repository;
 
 import com.shop.Workshop.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -12,4 +13,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     public List<User> findByBirthDate(Date date);
 
+    @Query("{ 'name': {$regex: ?0, $options: 'i' } }")
+    List<User> findByName(String name);
 }

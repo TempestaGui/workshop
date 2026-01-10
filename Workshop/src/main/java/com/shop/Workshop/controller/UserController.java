@@ -74,4 +74,13 @@ public class UserController {
 
         return ResponseEntity.ok().body(toDTO);
     }
+
+    @GetMapping("/name")
+    public ResponseEntity<List<UserDTO>> findByName(@RequestParam(value = "name") String name){
+        name = URL.decodeParam(name);
+        List<User> list = userService.findByName(name);
+        List<UserDTO> toDTO = list.stream().map(x -> new UserDTO(x)).toList();
+
+        return ResponseEntity.ok().body(toDTO);
+    }
 }
